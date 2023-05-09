@@ -8,10 +8,15 @@
 #' @param code A character vector or a string specifying the Harmonizome dataset code(s) for which to retrieve the gene sets.
 #' @return A tibble with columns for dataset code and gene IDs in each gene set.
 #' @import dplyr
+#' @import tidyr
+#' @import purrr
 #' @import httr
 #' @import jsonlite
 get_geneset <- function(code) {
   require(dplyr)
+  require(tibble)
+  require(tidyr)
+  require(purrr)
   require(httr)
   require(jsonlite)
 
@@ -24,7 +29,7 @@ get_geneset <- function(code) {
     dplyr::select(-Name,-Link) %>%
     dplyr::group_by(Code) %>%
     tidyr::nest() %>%
-    mutate(cont = purrr::map(data,\(x) x %>%
+    dplyr::mutate(cont = purrr::map(data,\(x) x %>%
                                pull(query) %>%
                                GET %>%
                                content("text",encoding = "UTF-8")))
@@ -36,19 +41,19 @@ get_geneset <- function(code) {
 
   tmp %>%
     #Remove bad requests
-    filter(stringr::str_detect(cont,"Bad request",negate = TRUE)) %>%
-    mutate(cont = map(cont, \(x) x %>% fromJSON %>% pluck("geneSets"))) %>%
+    dplyr::filter(stringr::str_detect(cont,"Bad request",negate = TRUE)) %>%
+    dplyr::mutate(cont = purrr::map(cont, \(x) x %>% fromJSON %>% pluck("geneSets"))) %>%
     #mutate(gs1 = map(cont,\(x) x %>% ))
-    unnest(cont) %>%
-    mutate(query = glue::glue("https://maayanlab.cloud/Harmonizome{href}")) %>%
-    mutate(cont = map(query, GET,.progress = TRUE)) %>%
-    mutate(cont = map(cont, \(x) x %>%
+    tidyr::unnest(cont) %>%
+    dplyr::mutate(query = glue::glue("https://maayanlab.cloud/Harmonizome{href}")) %>%
+    dplyr::mutate(cont = purrr::map(query, GET,.progress = TRUE)) %>%
+    dplyr::mutate(cont = purrr::map(cont, \(x) x %>%
                         content("text",encoding = "UTF-8") %>%
                         fromJSON)) %>%
-    mutate(gs = map(cont, ~pluck(.,"associations","gene"))) %>%
-    select(-data,-href,-query,-cont) %>%
-    unnest(gs) %>%
-    select(-href) %>%
-    ungroup()
+    dplyr::mutate(gs = map(cont, ~pluck(.,"associations","gene"))) %>%
+    dplyr::select(-data,-href,-query,-cont) %>%
+    tidyr::unnest(gs) %>%
+    dplyr::select(-href) %>%
+    dplyr::ungroup()
 
 }

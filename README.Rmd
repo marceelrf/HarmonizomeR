@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # Harmonizome
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis.
@@ -31,3 +32,29 @@ devtools::install_github("marceelrf/Harmonizome")
 
 ## Example
 
+```{r,echo=FALSE}
+for (f in list.files(full.names = T,pattern="*.R",path = "R/")) {
+    source(f)
+}
+for (f in list.files(full.names = T,pattern="*.rda",path = "data/")) {
+    load(f)
+}
+```
+
+The function `show_dataset_collection` is used to check all available datasets.
+
+```{r}
+show_dataset_collection()
+```
+
+Let's use the [*SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs* dataset](https://maayanlab.cloud/Harmonizome/dataset/SILAC+Phosphoproteomics+Signatures+of+Differentially+Phosphorylated+Proteins+for+Drugs) using the code **silacdrug** in the function `get_geneset`.
+
+**CAUTION**: Depending on the size of your data set and your internet connection this step could take a long time!!!
+
+```{r}
+silacdrug_ds <- get_geneset(code = "silacdrug")
+```
+
+```{r}
+head(silacdrug_ds)
+```
