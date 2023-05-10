@@ -23,7 +23,7 @@
 #' @importFrom stats qchisq
 #'
 #' @examples
-#' EnrichHarmonizome(gene = c("PTEN", "TP53"), tbl = example_tbl, pvalueCutoff = 0.05, pAdjustMethod = "BH", qvalueCutoff = 0.05)
+#' EnrichHarmonizome(gene = c("PTEN", "TP53"), tbl = silacdrug_ds, pvalueCutoff = 0.05, pAdjustMethod = "BH", qvalueCutoff = 0.05)
 #'
 #' @seealso \code{\link{enricher}} function from the \code{clusterProfiler} package.
 EnrichHarmonizome <- function(gene, tbl,pvalueCutoff,pAdjustMethod,
