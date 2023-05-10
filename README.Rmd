@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis from the [Harmonizome](https://maayanlab.cloud/Harmonizome/) database [@rouillard2016].
+The goal of `{Harmonizome}` is to provide a fast interface to download and perform functional and gene set enrichment analysis from the [Harmonizome](https://maayanlab.cloud/Harmonizome/) database [@rouillard2016].
 
 ## Installation
 
-You can install the development version of Harmonizome from [GitHub](https://github.com/) with:
+You can install the development version of `{Harmonizome}` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -42,13 +42,13 @@ for (f in list.files(full.names = T,pattern="*.rda",path = "data/")) {
 }
 ```
 
-The function `show_dataset_collection` is used to check all available datasets.
+The function `show_dataset_collection()` is used to check all available datasets.
 
 ```{r}
 show_dataset_collection()
 ```
 
-Let's use the [*SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs* dataset](https://maayanlab.cloud/Harmonizome/dataset/SILAC+Phosphoproteomics+Signatures+of+Differentially+Phosphorylated+Proteins+for+Drugs) using the code **silacdrug** in the function `get_geneset`.
+Let's use the [*SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs* dataset](https://maayanlab.cloud/Harmonizome/dataset/SILAC+Phosphoproteomics+Signatures+of+Differentially+Phosphorylated+Proteins+for+Drugs) using the code **silacdrug** in the function `get_geneset()`.
 
 **CAUTION**: Depending on the size of your data set and your internet connection this step could take a long time!!!
 
@@ -63,6 +63,8 @@ head(silacdrug_ds)
 ## Enrichment analysis
 
 ### Over representation analysis (ORA)
+
+To perform the ORA the function `EnrichHarmonizome()` uses the `{clusterProfiler}` package [@clusterProfiler].
 
 ```{r}
 genes <- c("CYP2D26","NCOA7","CCDC3","SNTG2","LIMK1","PPWD1","2900055J20RIK","GM839","HSPA12A","MTIF3","KDM2B",
@@ -81,7 +83,9 @@ head(ORA@result)
 
 ### Gene set enrichment analysis (GSEA)
 
-To perform the GSEA analysis is necessary to convert the geneset to a named list. The function `geneset_to_list` handle with this task.
+To perform the GSEA analysis is necessary to convert the geneset to a named list. The function `geneset_to_list()` handle with this task.
+
+The function `GSEAHarmonizome()` uses the `{fgsea}` package to compute the GSEA algorithm [@fgsea; @subramanian2005; @mootha2003].
 
 ```{r}
 pathways_list <- geneset_to_list(tbl = silacdrug_ds)
@@ -98,6 +102,8 @@ head(GSEA)
 ```
 
 ### Gene set variation analysis
+
+`GSVAHarmonizome()` wraps the `{GSVA}` package to perform the GSVA algorithm [@Hänzelmann2013; @GSVA].
 
 ```{r}
 data("example_gsva")
