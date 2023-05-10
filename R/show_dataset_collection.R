@@ -16,7 +16,7 @@
 #'
 #' @keywords dataset, harmonizome
 show_dataset_collection <- function(){
-  require(dplyr)
+  suppressPackageStartupMessages(require(dplyr))
 
   load("R/sysdata.rda")
 

@@ -65,7 +65,9 @@ head(silacdrug_ds)
 ### Over representation analysis (ORA)
 
 ```{r}
-genes <- c("CYP2D26","NCOA7","CCDC3","SNTG2","LIMK1","PPWD1","2900055J20RIK","GM839","HSPA12A","MTIF3","KDM2B","FAM221A","GM19710","CCDC68","CNRIP1","GM7544","LGI2","CLIP3","GM9484","1700034J05RIK","RIPK2","DPF2","RPS6KA4","RUNX1","DNM1L","SGTA","PIP5K1B","MTA1","KIAA1524","NCOR2","HSP90AB1","ARFIP2","DKC1","KMT2A","RPLP2","PLEC","HSP90AA1","PEAK1","ZDHHC5","TBC1D25")
+genes <- c("CYP2D26","NCOA7","CCDC3","SNTG2","LIMK1","PPWD1","2900055J20RIK","GM839","HSPA12A","MTIF3","KDM2B",
+           "FAM221A","GM19710","CCDC68","CNRIP1","GM7544","LGI2","CLIP3","GM9484","1700034J05RIK","RIPK2","DPF2","RPS6KA4","RUNX1","DNM1L","SGTA","PIP5K1B","MTA1","KIAA1524","NCOR2",
+           "HSP90AB1","ARFIP2","DKC1","KMT2A","RPLP2","PLEC","HSP90AA1","PEAK1","ZDHHC5","TBC1D25")
 
 ORA <- EnrichHarmonizome(gene = genes,
                   tbl = silacdrug_ds,
@@ -104,5 +106,9 @@ GSVA <- GSVAHarmonizome(expr = example_expr,pathways = pathways_list)
 
 
 ```
+
+## Funding
+
+The authors thanks [FAPESP](https://fapesp.br/)(n 2018/05731-7) for the funding.
 
 ## References
