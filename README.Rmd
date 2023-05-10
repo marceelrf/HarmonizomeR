@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: references.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -19,7 +20,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis.
+The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis from the [Harmonizome](https://maayanlab.cloud/Harmonizome/) database [@rouillard2016].
 
 ## Installation
 
@@ -58,3 +59,50 @@ silacdrug_ds <- get_geneset(code = "silacdrug")
 ```{r}
 head(silacdrug_ds)
 ```
+
+## Enrichment analysis
+
+### Over representation analysis (ORA)
+
+```{r}
+genes <- c("CYP2D26","NCOA7","CCDC3","SNTG2","LIMK1","PPWD1","2900055J20RIK","GM839","HSPA12A","MTIF3","KDM2B","FAM221A","GM19710","CCDC68","CNRIP1","GM7544","LGI2","CLIP3","GM9484","1700034J05RIK","RIPK2","DPF2","RPS6KA4","RUNX1","DNM1L","SGTA","PIP5K1B","MTA1","KIAA1524","NCOR2","HSP90AB1","ARFIP2","DKC1","KMT2A","RPLP2","PLEC","HSP90AA1","PEAK1","ZDHHC5","TBC1D25")
+
+ORA <- EnrichHarmonizome(gene = genes,
+                  tbl = silacdrug_ds,
+                  pvalueCutoff = 0.05,
+                  pAdjustMethod = "BH",
+                  minGSSize = 5,
+                  maxGSSize = 5000)
+
+head(ORA@result)
+```
+
+### Gene set enrichment analysis (GSEA)
+
+To perform the GSEA analysis is necessary to convert the geneset to a named list. The function `geneset_to_list` handle with this task.
+
+```{r}
+pathways_list <- geneset_to_list(tbl = silacdrug_ds)
+
+pathways_list[1]
+```
+
+```{r}
+data("example_gsea")
+GSEA <- GSEAHarmonizome(pathways = pathways_list,
+                        stats = gene_ranks,minSize = 10,maxSize = 500)
+
+head(GSEA)
+```
+
+### Gene set variation analysis
+
+```{r}
+data("example_gsva")
+
+GSVA <- GSVAHarmonizome(expr = example_expr,pathways = pathways_list)
+
+
+```
+
+## References

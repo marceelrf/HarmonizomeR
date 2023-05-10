@@ -13,8 +13,7 @@ Author:
              role = "ctb",
              comment = c(ORCID = "0000-0002-4149-5965")))
 Maintainer: Marcel Ferreira <marcel.ferreira@unesp.br>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis from the Harmonizome database [@rouillard2016]
 License: MIT
 Encoding: UTF-8
 LazyData: true

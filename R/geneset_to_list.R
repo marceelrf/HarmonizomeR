@@ -35,8 +35,8 @@ geneset_to_list <- function(tbl) {
   tbl %>%
     dplyr::select(-Code) %>%
     dplyr::group_by(name) %>%
-    dplyr::nest() %>%
+    tidyr::nest() %>%
     dplyr::mutate(res = map(data, pull)) %>%
     dplyr::select(-data) %>%
-    dplyr::deframe()
+    tibble::deframe()
 }

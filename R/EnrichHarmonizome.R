@@ -27,7 +27,7 @@
 #'
 #' @seealso \code{\link{enricher}} function from the \code{clusterProfiler} package.
 EnrichHarmonizome <- function(gene, tbl,pvalueCutoff,pAdjustMethod,
-                              minGSSize = 10,maxGSSize = 100,qvalueCutoff) {
+                              minGSSize = 10,maxGSSize = 100,qvalueCutoff = 0.2) {
 
   require(clusterProfiler)
 
