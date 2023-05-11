@@ -19,7 +19,7 @@ Run GSVA analysis using Harmonizome pathways
 }
 \examples{
 data(example_expr)
-data(example_pathways)
+
 result <- GSVAHarmonizome(expr = example_expr, pathways = example_pathways)
 }
 \keyword{GSVA,}

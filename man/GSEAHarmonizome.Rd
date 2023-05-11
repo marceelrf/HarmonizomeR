@@ -28,12 +28,3 @@ This function performs Gene Set Enrichment Analysis (GSEA) using gene sets
 from Harmonizome. It uses the fgsea package to calculate enrichment scores
 and p-values for the given gene set and gene expression data.
 }
-\examples{
-library(dplyr)
-data(cancer_eset)
-gene_symbols <- as.character(rownames(exprs(cancer_eset)))
-gseah_genesets <- get_geneset(c("GO_Biological_Process_2018", "KEGG_2019_Human"))
-gseah_geneset_list <- geneset_to_list(gseah_genesets)
-gseah_results <- GSEAHarmonizome(gseah_geneset_list, gene_symbols, minSize = 10, maxSize = 100)
-
-}
