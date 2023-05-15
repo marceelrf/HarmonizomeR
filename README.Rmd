@@ -14,21 +14,21 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Harmonizome
+# HarmonizomeR
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of `{Harmonizome}` is to provide a fast interface to download and perform functional and gene set enrichment analysis from the [Harmonizome](https://maayanlab.cloud/Harmonizome/) database [@rouillard2016].
+The goal of `{HarmonizomeR}` is to provide a fast interface to download and perform functional and gene set enrichment analysis from the [Harmonizome](https://maayanlab.cloud/Harmonizome/) database [@rouillard2016].
 
 ## Installation
 
-You can install the development version of `{Harmonizome}` from [GitHub](https://github.com/) with:
+You can install the development version of `{HarmonizomeR}` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("marceelrf/Harmonizome")
+devtools::install_github("marceelrf/HarmonizomeR")
 ```
 
 ## Example

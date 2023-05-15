@@ -1,4 +1,4 @@
-Package: Harmonizome
+Package: HarmonizomeR
 Type: Package
 Title: provide a fast interface to download and perform functional and gene set enrichment analysis from Hamonizome
 Version: 0.1.0
