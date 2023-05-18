@@ -20,10 +20,10 @@ get_geneset <- function(code) {
   require(httr)
   require(jsonlite)
 
-  load("R/sysdata.rda")
+  HarmonizomeR:::harmonizome_datasets
   invisible(harmonizome_datasets)
 
-  tmp <- harmonizome_datasets %>%
+  tmp <- HarmonizomeR:::harmonizome_datasets %>%
     dplyr::filter(Code %in% code) %>%
     dplyr::mutate(query = glue::glue("https://maayanlab.cloud/Harmonizome/api/1.0/dataset/{Link}")) %>%
     dplyr::select(-Name,-Link) %>%

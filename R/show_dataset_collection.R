@@ -18,12 +18,12 @@
 show_dataset_collection <- function(){
   suppressPackageStartupMessages(require(dplyr))
 
-  load("R/sysdata.rda")
-
-  invisible(harmonizome_datasets)
+  # HarmonizomeR:::harmonizome_datasets
+  #
+  # invisible(harmonizome_datasets)
 
   message("To check the complete dataset information,\ngo to: https://maayanlab.cloud/Harmonizome/")
-  harmonizome_datasets %>%
+  HarmonizomeR:::harmonizome_datasets %>%
     dplyr::select(-Link)
 }
 
