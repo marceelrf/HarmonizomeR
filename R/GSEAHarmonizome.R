@@ -27,5 +27,7 @@ GSEAHarmonizome <- function(pathways,stats,minSize,maxSize){
   fgsea::fgsea(pathways = pathways,
                stats    = stats,
                minSize  = 1,
-               maxSize  = 5000)
+               maxSize  = 5000,
+               nproc=1,
+               eps = 0)
 }
