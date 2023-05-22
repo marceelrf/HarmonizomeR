@@ -2,10 +2,12 @@ Package: HarmonizomeR
 Type: Package
 Title: provide a fast interface to download and perform functional and gene set enrichment analysis from Hamonizome
 Version: 0.1.0
+Authors: Marcel Ferreira <marcel.ferreira@unesp.br> [aut, cre] (<https://orcid.org/0000-0002-3445-0945>)
 Authors@R: c(
   person(given = "Marcel",family = "Ferreira",role = c("aut", "cre"),email = "marcel.ferreira@unesp.br",comment = c(ORCID = "0000-0002-3445-0945")),
   person(given = "Willian",family = "Zambuzzi",role = "ctb",email = "w.zambuzzi@unesp.br",comment = c(ORCID = "0000-0002-4149-5965")),
-  person(given = "Matheus", family = "Amaral", role = "ctb"))
+  person(given = "Matheus", family = "Amaral", role = "ctb")
+  )
 Maintainer: Marcel Ferreira <marcel.ferreira@unesp.br>
 Description: The goal of Harmonizome is to provide a fast interface to download and perform functional and gene set enrichment analysis from the Harmonizome database
 License: MIT
