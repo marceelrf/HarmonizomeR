@@ -30,7 +30,7 @@ datasets.
 show_dataset_collection()
 #> To check the complete dataset information,
 #> go to: https://maayanlab.cloud/Harmonizome/
-#> # A tibble: 129 x 2
+#> # A tibble: 130 x 2
 #>    Name                                                                    Code 
 #>    <chr>                                                                   <chr>
 #>  1 Achilles Cell Line Gene Essentiality Profiles                           achi~
@@ -43,7 +43,7 @@ show_dataset_collection()
 #>  8 BioGPS Cell Line Gene Expression Profiles                               biog~
 #>  9 BioGPS Human Cell Type and Tissue Gene Expression Profiles              biog~
 #> 10 BioGPS Mouse Cell Type and Tissue Gene Expression Profiles              biog~
-#> # ... with 119 more rows
+#> # ... with 120 more rows
 ```
 
 Let’s use the [*SILAC Phosphoproteomics Signatures of Differentially
@@ -67,21 +67,21 @@ silacdrug_ds <- get_geneset(code = "silacdrug")
 #> 
 #>     flatten
 #> 
-#> =>----------------------------- 4% | ETA: 33s ===>---------------------------
-#> 9% | ETA: 20s ====>-------------------------- 13% | ETA: 14s
-#> =====>------------------------- 17% | ETA: 14s =======>-----------------------
-#> 22% | ETA: 12s ========>---------------------- 26% | ETA: 10s
-#> =========>--------------------- 30% | ETA: 9s ==========>--------------------
-#> 35% | ETA: 8s ============>------------------ 39% | ETA: 7s
-#> =============>----------------- 43% | ETA: 6s ==============>----------------
-#> 48% | ETA: 6s ================>-------------- 52% | ETA: 5s
-#> =================>------------- 57% | ETA: 4s ==================>------------
-#> 61% | ETA: 4s ====================>---------- 65% | ETA: 3s
-#> =====================>--------- 70% | ETA: 3s ======================>--------
-#> 74% | ETA: 3s =======================>------- 78% | ETA: 2s
-#> =========================>----- 83% | ETA: 2s ==========================>----
-#> 87% | ETA: 1s ===========================>--- 91% | ETA: 1s
-#> =============================>- 96% | ETA: 0s
+#> =>----------------------------- 4% | ETA: 44s ===>---------------------------
+#> 9% | ETA: 26s ====>-------------------------- 13% | ETA: 21s
+#> =====>------------------------- 17% | ETA: 21s =======>-----------------------
+#> 22% | ETA: 18s ========>---------------------- 26% | ETA: 15s
+#> =========>--------------------- 30% | ETA: 13s ==========>--------------------
+#> 35% | ETA: 12s ============>------------------ 39% | ETA: 11s
+#> =============>----------------- 43% | ETA: 11s ==============>----------------
+#> 48% | ETA: 10s ================>-------------- 52% | ETA: 9s
+#> =================>------------- 57% | ETA: 8s ==================>------------
+#> 61% | ETA: 7s ====================>---------- 65% | ETA: 6s
+#> =====================>--------- 70% | ETA: 5s ======================>--------
+#> 74% | ETA: 4s =======================>------- 78% | ETA: 4s
+#> =========================>----- 83% | ETA: 3s ==========================>----
+#> 87% | ETA: 2s ===========================>--- 91% | ETA: 1s
+#> =============================>- 96% | ETA: 1s
 ```
 
 ``` r
@@ -89,12 +89,12 @@ head(silacdrug_ds)
 #> # A tibble: 6 x 3
 #>   Code      name                                                          symbol
 #>   <chr>     <chr>                                                         <chr> 
-#> 1 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ KLHL6 
-#> 2 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ BMI1  
-#> 3 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ PSD4  
-#> 4 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ PHLDB1
-#> 5 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ ATF2  
-#> 6 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ BMS1
+#> 1 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ CEBPZ 
+#> 2 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ CHD1  
+#> 3 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ ZDHHC5
+#> 4 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ PLCH1 
+#> 5 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ SIK3  
+#> 6 silacdrug 10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SI~ GRB7
 ```
 
 ## Enrichment analysis
@@ -211,205 +211,208 @@ Subramanian et al. 2005; Mootha et al. 2003).
 ``` r
 pathways_list <- geneset_to_list(tbl = silacdrug_ds)
 
+length(pathways_list[[1]])
+#> [1] 1182
+
 pathways_list[1]
 #> $`10min_PPase_inhibitors vs ctrl_Hepa1-6 (Mouse) [18846507]/SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs`
-#>    [1] "KLHL6"     "BMI1"      "PSD4"      "PHLDB1"    "ATF2"      "BMS1"     
-#>    [7] "GMIP"      "ZNF687"    "MCRS1"     "MAP4K4"    "IBTK"      "PLEKHM1"  
-#>   [13] "ZYX"       "FNBP1L"    "HTATSF1"   "SRSF2"     "KMT2A"     "NF1"      
-#>   [19] "C12ORF10"  "FAM92A1"   "NT5C3A"    "TMEM106B"  "DOCK5"     "MUS81"    
-#>   [25] "MED24"     "JUN"       "RAB3IP"    "UBXN7"     "TSC22D2"   "SNTB2"    
-#>   [31] "CUX1"      "ZMYM2"     "BCLAF1"    "GPRC5C"    "CDC5L"     "ASUN"     
-#>   [37] "EIF2AK3"   "ZNF462"    "MFF"       "AEBP2"     "ESAM"      "CCDC88A"  
-#>   [43] "NECAP2"    "IGHMBP2"   "LGR5"      "SLMAP"     "STRN4"     "URI1"     
-#>   [49] "ENSA"      "ETV6"      "MCM2"      "NCOA3"     "SRA1"      "GTSE1"    
-#>   [55] "RPS17"     "BRD7"      "ZNF503"    "FARP1"     "ZWINT"     "PPFIBP1"  
-#>   [61] "HDGF"      "YY1"       "UGDH"      "DENND5B"   "KIF20B"    "TMSB10"   
-#>   [67] "KRT18"     "CCNL2"     "LEMD3"     "C1ORF52"   "ALS2"      "SH3BP1"   
-#>   [73] "TDP1"      "PXN"       "USP48"     "EPB41L1"   "RFC1"      "TULP3"    
-#>   [79] "LIMK2"     "NUCKS1"    "SYNPO"     "LVRN"      "RBM14"     "HNRNPK"   
-#>   [85] "RIF1"      "ZMYM4"     "WNK1"      "CKAP2"     "MEPCE"     "ETHE1"    
-#>   [91] "NFIC"      "PWWP2B"    "CLUH"      "RBBP6"     "HJURP"     "MBD3"     
-#>   [97] "WDR75"     "RRAD"      "TCEB3"     "XPO4"      "FAM76B"    "NR2C2AP"  
-#>  [103] "EIF3J"     "TWISTNB"   "UBE2J1"    "UBE2O"     "MED14"     "ARHGAP1"  
-#>  [109] "WDR55"     "STK24"     "PDS5B"     "HDAC6"     "CLASP1"    "CCNK"     
-#>  [115] "LRP1"      "POLA1"     "SRM"       "PDIA6"     "OTUD7B"    "PJA1"     
-#>  [121] "GMEB2"     "ROCK2"     "THUMPD3"   "ERBB2IP"   "HNRNPA2B1" "ADD1"     
-#>  [127] "UBA2"      "IVNS1ABP"  "STXBP5"    "PPP4R2"    "TAF3"      "TOR1AIP1" 
-#>  [133] "WDHD1"     "ARMC10"    "SUPT5H"    "UBR5"      "SALL1"     "C5ORF30"  
-#>  [139] "C2ORF49"   "KLC2"      "UTP18"     "CPEB4"     "PRPF4B"    "PAXBP1"   
-#>  [145] "TOX4"      "EPN3"      "CDK12"     "TTC7A"     "SOD1"      "LMNA"     
-#>  [151] "RAB11FIP5" "NBN"       "SMARCAD1"  "NCAPH"     "F11R"      "PEAK1"    
-#>  [157] "LMBRD2"    "ARHGEF10L" "KLF16"     "TRIM24"    "ELF1"      "ZNF598"   
-#>  [163] "KAT7"      "PRR12"     "CDCA3"     "DENND4C"   "ANKRD17"   "MKL2"     
-#>  [169] "PLEKHA7"   "DYNC1LI1"  "SORBS2"    "PIKFYVE"   "PNISR"     "SMARCC1"  
-#>  [175] "CXORF23"   "MYH10"     "PTPN1"     "HN1L"      "ADRBK1"    "EHBP1L1"  
-#>  [181] "ASPSCR1"   "PRKAB1"    "ARFGEF2"   "TRAM1"     "SPRY1"     "MAST4"    
-#>  [187] "HSPB8"     "PPIP5K2"   "AGFG1"     "SF3B2"     "TSR3"      "KIF20A"   
-#>  [193] "SIK3"      "NUP35"     "TTI1"      "SDC1"      "TMEM230"   "PLEC"     
-#>  [199] "PHF14"     "CHERP"     "DDX1"      "DSTN"      "INTS12"    "ITGB4"    
-#>  [205] "PHC3"      "BICC1"     "RSRC2"     "INTS6"     "USP4"      "TFEB"     
-#>  [211] "CRIP2"     "GIGYF2"    "ALKBH5"    "ABCF1"     "BRWD1"     "MAP3K3"   
-#>  [217] "PHACTR4"   "PML"       "AMPD2"     "TLE6"      "NUDC"      "CDC37"    
-#>  [223] "CACTIN"    "BAIAP2L1"  "IFI35"     "MARCKS"    "STON1"     "IFIH1"    
-#>  [229] "NUP188"    "PRKAB2"    "ITPKB"     "STIM1"     "SNX16"     "RPLP2"    
-#>  [235] "BRAF"      "ZNF569"    "EGFR"      "CEP170B"   "BCL2L13"   "LTV1"     
-#>  [241] "CCDC43"    "MAPK1"     "MTHFD1"    "FAM160A2"  "TTLL12"    "HSPA4"    
-#>  [247] "BRD8"      "UBAP1"     "MAP1S"     "RNF8"      "PDAP1"     "MAP4"     
-#>  [253] "REXO1"     "CNPY2"     "GAPVD1"    "RB1CC1"    "ABI1"      "SCAF4"    
-#>  [259] "AHCTF1"    "APRT"      "DIDO1"     "LRRFIP1"   "UHRF1BP1L" "SET"      
-#>  [265] "CFDP1"     "PVRL1"     "RNF187"    "RIN1"      "KIAA1598"  "LUC7L"    
-#>  [271] "C11ORF58"  "AKAP13"    "LASP1"     "TSC22D4"   "RPL37"     "CTAGE5"   
-#>  [277] "RRP1"      "ARHGAP32"  "FAM208A"   "CBX8"      "SHC1"      "HN1"      
-#>  [283] "TCF4"      "RAD18"     "MYC"       "BAD"       "RALGAPA2"  "IRF3"     
-#>  [289] "ULK1"      "SLTM"      "MAPK10"    "CXADR"     "NIFK"      "PRPF3"    
-#>  [295] "INCENP"    "GRB7"      "RBL1"      "RBM8A"     "IRF2BPL"   "HSP90AB1" 
-#>  [301] "HS1BP3"    "FXR2"      "CDKN2AIP"  "PBX2"      "SLC33A1"   "WHSC1"    
-#>  [307] "MAPK14"    "PKN2"      "BNIP2"     "CRTC2"     "SRRM2"     "MARK2"    
-#>  [313] "DNMT1"     "PSMD4"     "DNM1L"     "TOP2A"     "VPS26B"    "NCL"      
-#>  [319] "MYO9B"     "PPFIA1"    "RABEPK"    "LATS1"     "CBX5"      "ETL4"     
-#>  [325] "HDAC4"     "TJP2"      "HIRIP3"    "GCFC2"     "GORASP2"   "NUP98"    
-#>  [331] "CENPV"     "SRGAP2"    "FLNA"      "ATG16L1"   "RAPGEF3"   "FHOD1"    
-#>  [337] "MYBBP1A"   "MLF2"      "MTMR3"     "NUP93"     "TPD52L2"   "ZC3HC1"   
-#>  [343] "DPF2"      "DKC1"      "FAM63A"    "APBB2"     "TLK1"      "TLK2"     
-#>  [349] "TCIRG1"    "ERCC6L"    "RFTN1"     "VPS51"     "TRAF3IP1"  "ZCCHC8"   
-#>  [355] "EIF4EBP1"  "TRAF7"     "MBD5"      "IRF2BP2"   "ERRFI1"    "MAP2K4"   
-#>  [361] "MAST2"     "EIF3C"     "CCNT1"     "CAP1"      "SSBP3"     "TRIM2"    
-#>  [367] "NELFE"     "HDGFRP2"   "STRN3"     "ZFR"       "PNN"       "FAM104A"  
-#>  [373] "MRPL23"    "MTSS1"     "FNBP4"     "C17ORF49"  "UBE2T"     "SUN1"     
-#>  [379] "KIF23"     "MAPRE2"    "ETV3"      "CD2AP"     "SORD"      "CEP97"    
-#>  [385] "YAP1"      "KLC1"      "ARFIP1"    "RSF1"      "CEP170"    "LIMD1"    
-#>  [391] "LYSMD2"    "SLC35C2"   "KANSL1"    "EPHA2"     "COIL"      "SMTN"     
-#>  [397] "RPS10"     "VPRBP"     "SLC4A7"    "CHD8"      "SFSWAP"    "ZCCHC6"   
-#>  [403] "RBM3"      "TNS1"      "MYH9"      "HMHA1"     "KDM1A"     "API5"     
-#>  [409] "AP3B1"     "G3BP1"     "SLC38A2"   "CTNND1"    "CPD"       "PABPN1"   
-#>  [415] "TRA2B"     "TMEM55A"   "PLEKHG3"   "PHAX"      "SLC4A4"    "SAP30BP"  
-#>  [421] "GFPT2"     "CKAP5"     "ADNP"      "SMG6"      "DGKQ"      "AKT1S1"   
-#>  [427] "UACA"      "RASA3"     "TFIP11"    "SFR1"      "GTF2F1"    "NOC2L"    
-#>  [433] "FEZ2"      "MAGI3"     "DLGAP5"    "BCAR1"     "HCK"       "EIF5B"    
-#>  [439] "VTI1B"     "BNIP3"     "GRASP"     "MKL1"      "SLC7A7"    "PPIL4"    
-#>  [445] "CEBPZ"     "ESF1"      "PRPF38A"   "C8ORF33"   "KPNA3"     "SNX17"    
-#>  [451] "FBXW8"     "CTNNB1"    "KSR1"      "EMD"       "PAN3"      "MDC1"     
-#>  [457] "DSP"       "HNRNPA3"   "RBM15"     "RIPK1"     "ARHGAP35"  "SUB1"     
-#>  [463] "RABEP1"    "HYPK"      "NCOR2"     "SPIRE2"    "DDX27"     "DAXX"     
-#>  [469] "KIAA1468"  "CLSPN"     "TAB2"      "RANBP3"    "TUBA1B"    "SUPT6H"   
-#>  [475] "GPN1"      "WIBG"      "TMEM115"   "CFL1"      "DOCK7"     "MKI67"    
-#>  [481] "DLGAP4"    "RACGAP1"   "RPS2"      "SLC23A2"   "GOLM1"     "POLA2"    
-#>  [487] "PCNP"      "APLF"      "PSMF1"     "LARP7"     "RANGAP1"   "KIF21A"   
-#>  [493] "HIST1H1C"  "ARL6IP4"   "TRIP10"    "ZAK"       "ZNRF2"     "PPP2R5D"  
-#>  [499] "FKBP15"    "ACTC1"     "SNX2"      "TRMT1"     "SPTBN1"    "TBC1D4"   
-#>  [505] "LIG3"      "SPECC1L"   "DPYSL2"    "ZDHHC5"    "NIPBL"     "KRT8"     
-#>  [511] "ARFGEF1"   "PTPRC"     "BCL9"      "SNTB1"     "ARMC1"     "SRPK2"    
-#>  [517] "LYSMD3"    "TOM1"      "PIGB"      "PDXDC1"    "RPL7"      "RPL30"    
-#>  [523] "FAT1"      "MTUS1"     "BSG"       "PRUNE2"    "INPP5E"    "FKBP3"    
-#>  [529] "MTUS2"     "RICTOR"    "RPL13"     "DMXL1"     "THUMPD1"   "HSF1"     
-#>  [535] "CRK"       "WBP11"     "HNRNPLL"   "TJP1"      "GTF3C4"    "ASAP1"    
-#>  [541] "EPS15"     "ZRANB2"    "NUP50"     "MIA3"      "TRIM28"    "CAMK2G"   
-#>  [547] "STRN"      "SIN3A"     "CBL"       "IFITM2"    "LARP1"     "PLCB3"    
-#>  [553] "RFX1"      "POF1B"     "RANBP2"    "EIF4H"     "CLIP1"     "EIF2S2"   
-#>  [559] "SBNO1"     "CASC3"     "DTD1"      "TAF7"      "STMN1"     "N4BP2L2"  
-#>  [565] "NUP205"    "PUM1"      "DIP2B"     "NPM3"      "ADD3"      "ASAP2"    
-#>  [571] "PCIF1"     "EMG1"      "CAMSAP2"   "TXLNA"     "TFE3"      "PKP4"     
-#>  [577] "PFAS"      "RPRD2"     "TOP1"      "MYO18A"    "RPL6"      "GOLGB1"   
-#>  [583] "ITPR3"     "JADE3"     "NSFL1C"    "ZBED9"     "CNPY4"     "DNTTIP2"  
-#>  [589] "FAM195B"   "YWHAE"     "YTHDF1"    "NUP214"    "TMEM63B"   "TCEAL5"   
-#>  [595] "CGNL1"     "PDLIM7"    "PRKD3"     "DNAJC5"    "GAB1"      "FAF1"     
-#>  [601] "DMWD"      "PEX1"      "POLR2A"    "AKT1"      "NCBP1"     "KIAA0430" 
-#>  [607] "SYNE2"     "RALY"      "PCM1"      "HNRNPC"    "PCBP2"     "BOD1L1"   
-#>  [613] "HELLS"     "LIPE"      "PURB"      "PTPN21"    "PPP6R3"    "RBM39"    
-#>  [619] "CFL2"      "TP53BP2"   "LSM14B"    "GATAD2B"   "EDC4"      "NFATC2IP" 
-#>  [625] "VAPB"      "IKBKB"     "UFL1"      "NCOR1"     "MATR3"     "SSB"      
-#>  [631] "HMGA1"     "ARHGEF40"  "WDR20"     "EIF4B"     "CTR9"      "RAB7A"    
-#>  [637] "TPX2"      "SCRIB"     "UBA1"      "EPS8L2"    "CD44"      "BAG3"     
-#>  [643] "SLC4A1AP"  "TPR"       "PEX19"     "GBF1"      "FAM83H"    "NOP2"     
-#>  [649] "VAMP8"     "IRS2"      "PITPNB"    "CTTN"      "SMCR8"     "ARFIP2"   
-#>  [655] "STAMBPL1"  "NOL10"     "NOLC1"     "NME2"      "SGTA"      "TRA2A"    
-#>  [661] "HAUS6"     "PLEKHA1"   "MPHOSPH10" "KIF3A"     "SH3GL1"    "CASP3"    
-#>  [667] "MIER3"     "ZC3HAV1"   "CAMSAP1"   "CNOT2"     "ZC3H11A"   "EML3"     
-#>  [673] "PPP1R10"   "CCDC92"    "CYSRT1"    "SMARCC2"   "PICK1"     "NOP56"    
-#>  [679] "MRE11A"    "SYNRG"     "TSC2"      "HCFC1"     "PLCG1"     "HNRNPU"   
-#>  [685] "LTBP4"     "CRTC3"     "HNRNPH1"   "SSFA2"     "CHD4"      "ZC3H13"   
-#>  [691] "SLIRP"     "ANAPC1"    "NASP"      "RRP9"      "RAVER1"    "SPRED1"   
-#>  [697] "MAP7D1"    "NHSL1"     "SETD2"     "TP53BP1"   "MCM3"      "TRIP12"   
-#>  [703] "CAST"      "NUFIP1"    "ALAD"      "CBX4"      "ZCCHC9"    "EIF4A3"   
-#>  [709] "SVIL"      "SAMD4B"    "HMGXB4"    "RNF168"    "HSP90AA1"  "NDRG3"    
-#>  [715] "GNL3"      "LRRC41"    "RBM33"     "AKIRIN2"   "ZC3H8"     "PCGF6"    
-#>  [721] "PAPOLA"    "EIF4ENIF1" "PELP1"     "EIF1"      "KIAA1715"  "KANK2"    
-#>  [727] "COL4A3BP"  "KDM3B"     "PRKAA1"    "NSUN2"     "MED15"     "MDH1"     
-#>  [733] "TMEM176B"  "RBM25"     "NUFIP2"    "KIF2C"     "PCBP1"     "MDN1"     
-#>  [739] "DOCK1"     "TRRAP"     "ACIN1"     "SGSM3"     "BRCA1"     "LRRC8A"   
-#>  [745] "BIN1"      "SF3B1"     "ACACA"     "C12ORF45"  "EAF1"      "UTP15"    
-#>  [751] "FXR1"      "ARHGAP21"  "POLDIP3"   "MYO1E"     "PALLD"     "MAP3K2"   
-#>  [757] "USP39"     "MCM4"      "NFKB1"     "IRF2BP1"   "RBMX"      "ARHGDIA"  
-#>  [763] "WASF2"     "METAP2"    "LEMD2"     "SERBP1"    "NUP153"    "ZC3H14"   
-#>  [769] "HDLBP"     "FOXK1"     "RHBDF2"    "SUFU"      "CNOT3"     "NFRKB"    
-#>  [775] "CHAMP1"    "ZUFSP"     "CTIF"      "HP1BP3"    "PPP1R12C"  "GPHN"     
-#>  [781] "DBNL"      "R3HDM2"    "EXOC1"     "SH2B1"     "HEATR3"    "MFAP1"    
-#>  [787] "KNOP1"     "UBR4"      "AAK1"      "RPRD1B"    "SF3A1"     "TICRR"    
-#>  [793] "CDCA2"     "JAG1"      "SHROOM3"   "MTA3"      "ATF7"      "RSL1D1"   
-#>  [799] "BIRC6"     "FRA10AC1"  "STK11IP"   "USP10"     "EPB41"     "NPAT"     
-#>  [805] "TMPO"      "PLCH1"     "ZZZ3"      "PTMA"      "PJA2"      "CDK17"    
-#>  [811] "DDX46"     "SDC2"      "METTL1"    "CTNNA1"    "NEO1"      "ZZEF1"    
-#>  [817] "MTF1"      "OTUD4"     "NCAPD2"    "ATRX"      "SLK"       "ZNF330"   
-#>  [823] "MTFR1L"    "PDCL3"     "GIT1"      "RBM6"      "TRIO"      "WDR43"    
-#>  [829] "ARPC1B"    "BCR"       "TRIP11"    "CDC26"     "NUMA1"     "CSNK1E"   
-#>  [835] "ING4"      "SEC22B"    "RPS6KA4"   "TRAPPC8"   "STRIP1"    "TCF20"    
-#>  [841] "SPRY4"     "ARHGEF28"  "CASP8AP2"  "RAB3GAP1"  "PRKRA"     "PLEKHA6"  
-#>  [847] "PHLDB2"    "PEX14"     "MORC3"     "KIAA1522"  "TRIP6"     "PSIP1"    
-#>  [853] "PARD3"     "RTN4"      "UBA52"     "CDK16"     "PFKFB3"    "SMN1"     
-#>  [859] "EPB41L2"   "LBR"       "DDX51"     "PAK2"      "KIF5B"     "CHD1"     
-#>  [865] "CDC42EP1"  "ACLY"      "UBAP2"     "EIF4G3"    "SLC20A2"   "TBC1D25"  
-#>  [871] "RANBP9"    "FRMD4B"    "GIGYF1"    "ARHGAP5"   "CDK4"      "LEO1"     
-#>  [877] "GOLGA5"    "FBXO30"    "INO80C"    "ARFGAP1"   "VCL"       "PPP1R13L" 
-#>  [883] "FAM160B1"  "STK3"      "SIK1"      "ELMSAN1"   "SRRT"      "MARK3"    
-#>  [889] "RBM10"     "MLX"       "MLLT4"     "SPATA13"   "PTPRJ"     "TJAP1"    
-#>  [895] "BAIAP2"    "SOS1"      "ARID4A"    "AGAP1"     "KANK1"     "ZNF7"     
-#>  [901] "OPTN"      "MAPK3"     "SRRM1"     "PUM2"      "AFTPH"     "RBM17"    
-#>  [907] "CASP7"     "HLA-A"     "CSTF3"     "CTTNBP2NL" "APOBR"     "CHFR"     
-#>  [913] "CD2BP2"    "XRCC6"     "TMCC2"     "TBX3"      "PRRC2C"    "SMARCA4"  
-#>  [919] "C7ORF43"   "RAI14"     "SLC9A3R1"  "NEDD4"     "CTDP1"     "PPP1R12A" 
-#>  [925] "SNIP1"     "SPAG9"     "FAM91A1"   "SPHK2"     "PLEKHA5"   "NUCB1"    
-#>  [931] "PLEKHG2"   "FOSL2"     "MXRA8"     "FTSJ3"     "LARP4"     "RAD51AP1" 
-#>  [937] "ARHGAP6"   "YWHAZ"     "PRRC2B"    "NMT2"      "SQSTM1"    "CHTF18"   
-#>  [943] "SRSF10"    "LLPH"      "CALM2"     "CDC42EP5"  "KRT20"     "ARRB1"    
-#>  [949] "KIFAP3"    "DUSP16"    "NELFA"     "FAM122A"   "STK4"      "SLC16A1"  
-#>  [955] "EIF2B5"    "ESYT2"     "CWC27"     "VIM"       "REPS1"     "EIF3B"    
-#>  [961] "LMO7"      "SPIDR"     "EIF4G1"    "TRIOBP"    "WIPF2"     "C10ORF88" 
-#>  [967] "FAM195A"   "USP15"     "SKA3"      "ZRANB3"    "ABI2"      "IFITM3"   
-#>  [973] "NOL4L"     "NAV1"      "RAB9A"     "TAGLN2"    "NUSAP1"    "SH3KBP1"  
-#>  [979] "SNX5"      "LMNB1"     "DNAJC2"    "SUGP1"     "SSH3"      "AMPD3"    
-#>  [985] "EIF6"      "ATXN2L"    "DDX55"     "EIF3D"     "WIZ"       "SLC16A10" 
-#>  [991] "SLC9A6"    "OSBP"      "OSBPL11"   "PLXNB3"    "HNF1B"     "ZMYND8"   
-#>  [997] "CCNL1"     "SRSF11"    "RPS20"     "PA2G4"     "NOL9"      "FLNC"     
-#> [1003] "DEPTOR"    "CBX3"      "EPS15L1"   "SDPR"      "ERF"       "NAB2"     
-#> [1009] "SLAIN2"    "SPEN"      "SNAP23"    "MARS"      "DHX16"     "NFX1"     
-#> [1015] "SMAP2"     "NOM1"      "SLC26A2"   "U2AF2"     "PAWR"      "NUP133"   
-#> [1021] "SIPA1L1"   "RPS3"      "ZFC3H1"    "ARFGAP2"   "BET1"      "COBLL1"   
-#> [1027] "ARGLU1"    "TRAPPC10"  "CHD2"      "AATF"      "LRRFIP2"   "PSRC1"    
-#> [1033] "ZNF106"    "MTDH"      "ZNF281"    "SH3BP4"    "MINK1"     "RPS6KA3"  
-#> [1039] "RAB11FIP1" "UCK2"      "YTHDC2"    "CIC"       "FAM175A"   "ARHGEF11" 
-#> [1045] "EML4"      "BCL9L"     "GINS2"     "CDV3"      "TFAP4"     "PDCD4"    
-#> [1051] "CDC42EP4"  "YBX3"      "CAPZA2"    "TNS3"      "THRAP3"    "TNKS1BP1" 
-#> [1057] "GRAMD3"    "NMNAT1"    "DDX42"     "AHNAK"     "EEF2"      "SNRNP200" 
-#> [1063] "SH3PXD2B"  "DTX2"      "C2CD5"     "MLLT6"     "PID1"      "SAFB2"    
-#> [1069] "LPP"       "CES5A"     "NCOA5"     "CEP55"     "CKAP4"     "CHEK1"    
-#> [1075] "ATXN2"     "TAB3"      "PSMD11"    "RBM7"      "CDK18"     "RIN2"     
-#> [1081] "SAV1"      "GPSM2"     "ABL2"      "TMEM245"   "RNF20"     "SNX7"     
-#> [1087] "PRRC2A"    "TCOF1"     "RPL24"     "PRPF40A"   "PDZD8"     "PTPRG"    
-#> [1093] "KIF4A"     "GOLGA3"    "CDK1"      "TAOK1"     "NMT1"      "NVL"      
-#> [1099] "SPTAN1"    "FLRT1"     "HNRNPAB"   "MAVS"      "C19ORF47"  "DST"      
-#> [1105] "LUC7L2"    "TMOD3"     "HNRNPUL2"  "ZCCHC11"   "ATAD2"     "PUS10"    
-#> [1111] "PTPN12"    "SMEK1"     "ATG2B"     "RNMT"      "MOB1B"     "LRP4"     
-#> [1117] "IRS1"      "NEK9"      "BCKDHA"    "EI24"      "SRP14"     "SPATS2"   
-#> [1123] "IQSEC1"    "SIK2"      "EPHB4"     "CHAF1B"    "RFX7"      "RTKN"     
-#> [1129] "SLC1A5"    "KLC3"      "ABLIM1"    "UBAP2L"    "PPP1R18"   "PARD6B"   
-#> [1135] "C2ORF44"   "MELK"      "RPTOR"     "AARSD1"    "ZFHX3"     "CYLD"     
-#> [1141] "ARHGEF7"   "NEDD4L"    "HMGN1"     "FBL"       "WDR62"     "RNASEH2A" 
-#> [1147] "QARS"      "DDX20"     "IWS1"      "ZW10"      "ZFP36L1"   "PEA15"    
-#> [1153] "ZNF608"    "AKAP10"    "FAM193A"   "PPHLN1"    "HNRNPA1"   "LUZP1"    
-#> [1159] "CLUAP1"    "RPS6KA1"   "YBX1"      "REEP3"     "CC2D1B"    "SMG9"     
-#> [1165] "CCT8"      "DOPEY1"    "PRKD2"     "BAZ2A"     "TBC1D1"    "TNS2"     
-#> [1171] "NPM1"      "WDR70"     "MCM6"      "TXNL1"     "NMD3"      "LSR"      
-#> [1177] "DCP2"      "CGN"       "DUSP7"     "ANP32B"    "MED1"      "FAM207A"
+#>    [1] "CEBPZ"     "CHD1"      "ZDHHC5"    "PLCH1"     "SIK3"      "GRB7"     
+#>    [7] "GIT1"      "NOC2L"     "NUP214"    "AFTPH"     "SUGP1"     "INTS12"   
+#>   [13] "DKC1"      "CDC42EP5"  "TAF3"      "EHBP1L1"   "DDX1"      "CCNL2"    
+#>   [19] "SMN1"      "SRSF10"    "RAB11FIP1" "YWHAZ"     "N4BP2L2"   "SORBS2"   
+#>   [25] "FAM122A"   "CHEK1"     "EIF2S2"    "NUSAP1"    "KIF20B"    "KDM1A"    
+#>   [31] "RFX7"      "IRF2BP1"   "STK3"      "EGFR"      "PRRC2A"    "VAPB"     
+#>   [37] "EMD"       "RPL30"     "NFRKB"     "PFKFB3"    "MLX"       "RPLP2"    
+#>   [43] "MFAP1"     "GBF1"      "HIST1H1C"  "NFX1"      "UBA52"     "TDP1"     
+#>   [49] "EIF4ENIF1" "PPFIA1"    "FAM195B"   "NHSL1"     "IRF2BPL"   "PLXNB3"   
+#>   [55] "G3BP1"     "TSC22D4"   "C12ORF45"  "TRIOBP"    "THRAP3"    "LIMD1"    
+#>   [61] "PTPRJ"     "ATG16L1"   "CHTF18"    "CTNNA1"    "WDR55"     "TRIP10"   
+#>   [67] "KAT7"      "MCM4"      "CYSRT1"    "UBE2J1"    "ESYT2"     "PCBP2"    
+#>   [73] "IRS1"      "PLEC"      "EPB41L1"   "MTHFD1"    "SH3KBP1"   "CHAMP1"   
+#>   [79] "MYH10"     "ARHGAP6"   "LUZP1"     "LBR"       "TAOK1"     "SIK2"     
+#>   [85] "EPHA2"     "CTAGE5"    "PUM2"      "TMEM176B"  "SNX16"     "EAF1"     
+#>   [91] "RANBP3"    "TCF4"      "C17ORF49"  "RPS2"      "RPL13"     "UTP15"    
+#>   [97] "CGNL1"     "RANBP2"    "C7ORF43"   "RAB7A"     "HDAC4"     "SHC1"     
+#>  [103] "FNBP1L"    "FAM208A"   "C5ORF30"   "C2CD5"     "CLASP1"    "TCIRG1"   
+#>  [109] "DBNL"      "UHRF1BP1L" "GRASP"     "ZNF462"    "HDGFRP2"   "BCLAF1"   
+#>  [115] "NMT2"      "MED24"     "INCENP"    "YBX3"      "ACTC1"     "HSP90AB1" 
+#>  [121] "KIAA1522"  "YY1"       "ZWINT"     "CLUAP1"    "TWISTNB"   "BAG3"     
+#>  [127] "BIN1"      "WNK1"      "TRAPPC8"   "CCDC92"    "PJA2"      "UBR4"     
+#>  [133] "SPIDR"     "WASF2"     "GMEB2"     "AMPD2"     "HNRNPLL"   "SKA3"     
+#>  [139] "MXRA8"     "ABI1"      "LARP1"     "RANBP9"    "ASAP1"     "CHFR"     
+#>  [145] "SLC1A5"    "PSMD11"    "PLEKHG3"   "SAMD4B"    "MYBBP1A"   "ZNF569"   
+#>  [151] "SGTA"      "CRIP2"     "RAB9A"     "CDK1"      "MTFR1L"    "EXOC1"    
+#>  [157] "CDC42EP4"  "LIG3"      "EPHB4"     "ITPR3"     "DTD1"      "EIF3B"    
+#>  [163] "YTHDF1"    "ADD1"      "CEP55"     "SPAG9"     "LTV1"      "BMS1"     
+#>  [169] "EIF2B5"    "FAM160B1"  "ZNF598"    "BRWD1"     "KRT8"      "DOPEY1"   
+#>  [175] "TLE6"      "FAM175A"   "SF3B2"     "PDS5B"     "UBE2T"     "STIM1"    
+#>  [181] "IKBKB"     "RSRC2"     "AGAP1"     "TRAF3IP1"  "HN1L"      "ANP32B"   
+#>  [187] "ERCC6L"    "HEATR3"    "ARGLU1"    "DOCK1"     "SPECC1L"   "GIGYF2"   
+#>  [193] "ARL6IP4"   "RNF187"    "CKAP2"     "CYLD"      "UBAP2"     "CLUH"     
+#>  [199] "BAIAP2L1"  "LSR"       "RACGAP1"   "YAP1"      "TRAM1"     "NELFE"    
+#>  [205] "CDC37"     "PPP2R5D"   "KLC3"      "NEO1"      "HSP90AA1"  "ACIN1"    
+#>  [211] "MBD5"      "USP15"     "PELP1"     "PA2G4"     "POLR2A"    "INPP5E"   
+#>  [217] "TSC22D2"   "TMCC2"     "PRKRA"     "APRT"      "SPEN"      "CAMSAP1"  
+#>  [223] "CFDP1"     "SMARCC1"   "OSBP"      "BRAF"      "CHD4"      "RIF1"     
+#>  [229] "UBA1"      "QARS"      "MFF"       "PSIP1"     "HJURP"     "VPRBP"    
+#>  [235] "STON1"     "REXO1"     "ACACA"     "TNKS1BP1"  "PAK2"      "RAPGEF3"  
+#>  [241] "C8ORF33"   "GOLGA3"    "IFIH1"     "ALKBH5"    "EIF4G3"    "TRA2B"    
+#>  [247] "GPHN"      "LMNB1"     "CDK18"     "DUSP16"    "WDR20"     "MARS"     
+#>  [253] "IVNS1ABP"  "ITGB4"     "POLDIP3"   "KLF16"     "FAM193A"   "RBMX"     
+#>  [259] "RFX1"      "GOLM1"     "XPO4"      "KIF3A"     "MTMR3"     "CHD2"     
+#>  [265] "TPX2"      "ZNF330"    "PDIA6"     "ZNF503"    "ARHGAP32"  "RNASEH2A" 
+#>  [271] "WHSC1"     "CBL"       "DGKQ"      "RBM7"      "PKN2"      "ARFIP1"   
+#>  [277] "ATF2"      "TLK1"      "CDV3"      "LMO7"      "EIF3C"     "CACTIN"   
+#>  [283] "ATXN2"     "PPP1R12A"  "HP1BP3"    "CBX4"      "GNL3"      "SSFA2"    
+#>  [289] "CRTC2"     "SET"       "USP48"     "SSH3"      "RB1CC1"    "MAPK3"    
+#>  [295] "BAZ2A"     "CAPZA2"    "NELFA"     "NT5C3A"    "TFE3"      "RPL24"    
+#>  [301] "PPP1R12C"  "STMN1"     "LEMD3"     "BAD"       "ZCCHC9"    "MAP3K2"   
+#>  [307] "WDR43"     "HLA-A"     "EML3"      "CASP8AP2"  "VIM"       "TOM1"     
+#>  [313] "SIPA1L1"   "CRTC3"     "TMEM106B"  "MAP4"      "MATR3"     "SLC4A1AP" 
+#>  [319] "ZCCHC6"    "BCL2L13"   "RPTOR"     "PIKFYVE"   "PWWP2B"    "HCFC1"    
+#>  [325] "FKBP3"     "CCDC43"    "SLC4A4"    "VPS51"     "DOCK7"     "PAN3"     
+#>  [331] "RAVER1"    "CFL2"      "HELLS"     "SPATS2"    "RHBDF2"    "PICK1"    
+#>  [337] "SPATA13"   "NMNAT1"    "SALL1"     "MYC"       "TRIP6"     "F11R"     
+#>  [343] "SNRNP200"  "RBM33"     "DNAJC5"    "KSR1"      "LVRN"      "DYNC1LI1" 
+#>  [349] "PEX19"     "SGSM3"     "SAP30BP"   "KIF20A"    "RIPK1"     "SNAP23"   
+#>  [355] "NEDD4"     "UBAP2L"    "LEMD2"     "DDX27"     "TFEB"      "CENPV"    
+#>  [361] "CASC3"     "SLC7A7"    "HMGA1"     "DDX20"     "CSNK1E"    "ING4"     
+#>  [367] "MTF1"      "SH3BP1"    "CSTF3"     "FAM104A"   "HMGXB4"    "CALM2"    
+#>  [373] "TCEB3"     "ZC3HAV1"   "FAM92A1"   "EIF4H"     "LIMK2"     "ESF1"     
+#>  [379] "PPP4R2"    "SMARCA4"   "ZC3H13"    "CXORF23"   "EPB41"     "SQSTM1"   
+#>  [385] "WBP11"     "KDM3B"     "ARFGAP2"   "SLC26A2"   "NOP56"     "SPHK2"    
+#>  [391] "ARHGDIA"   "ANAPC1"    "TRIM28"    "HSPA4"     "COL4A3BP"  "JADE3"    
+#>  [397] "CD2BP2"    "EI24"      "NBN"       "POLA2"     "FAM63A"    "ARHGAP5"  
+#>  [403] "LARP4"     "EIF4EBP1"  "OTUD7B"    "NOM1"      "SMAP2"     "CFL1"     
+#>  [409] "DST"       "SLTM"      "C2ORF44"   "AMPD3"     "SETD2"     "GPRC5C"   
+#>  [415] "CCNK"      "MIER3"     "CDKN2AIP"  "DNTTIP2"   "DPYSL2"    "CTTNBP2NL"
+#>  [421] "IFITM3"    "DNM1L"     "UGDH"      "ITPKB"     "PEAK1"     "PARD3"    
+#>  [427] "TRIP12"    "TOP2A"     "PRPF40A"   "PDCL3"     "SLC35C2"   "NCOA5"    
+#>  [433] "TRMT1"     "IWS1"      "NUFIP2"    "CKAP5"     "SPRED1"    "RPS10"    
+#>  [439] "LIPE"      "FAM160A2"  "CXADR"     "MAP2K4"    "ARRB1"     "NUDC"     
+#>  [445] "TBC1D1"    "ZNF7"      "TBC1D4"    "ADD3"      "NF1"       "BET1"     
+#>  [451] "IFI35"     "THUMPD1"   "ZNF687"    "SLC23A2"   "EPN3"      "ZMYM2"    
+#>  [457] "MED1"      "EDC4"      "ETV3"      "RRP1"      "LTBP4"     "CASP7"    
+#>  [463] "FOSL2"     "PVRL1"     "LMNA"      "SPTBN1"    "ABI2"      "PRKD2"    
+#>  [469] "C11ORF58"  "ANKRD17"   "HN1"       "MLF2"      "PUS10"     "REEP3"    
+#>  [475] "RRP9"      "CTR9"      "KANK2"     "SDC1"      "FBXW8"     "CLSPN"    
+#>  [481] "BAIAP2"    "PBX2"      "GPSM2"     "MAPK1"     "SIK1"      "MAPK14"   
+#>  [487] "HIRIP3"    "GIGYF1"    "AATF"      "PUM1"      "TTI1"      "PDCD4"    
+#>  [493] "NUMA1"     "TCF20"     "RTKN"      "SSBP3"     "GORASP2"   "MAPK10"   
+#>  [499] "RNF168"    "PSMF1"     "EIF2AK3"   "PRR12"     "MOB1B"     "C12ORF10" 
+#>  [505] "LUC7L"     "TRAPPC10"  "BOD1L1"    "CRK"       "YBX1"      "SRSF11"   
+#>  [511] "CAP1"      "DLGAP5"    "NIPBL"     "RBM3"      "IGHMBP2"   "PLEKHM1"  
+#>  [517] "ZNF106"    "COBLL1"    "DTX2"      "TULP3"     "MDN1"      "ARID4A"   
+#>  [523] "BIRC6"     "BSG"       "LLPH"      "STK4"      "NCL"       "PLEKHA5"  
+#>  [529] "ERF"       "SNX5"      "SRPK2"     "CTDP1"     "KRT20"     "NOL9"     
+#>  [535] "FBL"       "LMBRD2"    "PSMD4"     "FTSJ3"     "PEX1"      "RPL6"     
+#>  [541] "KNOP1"     "EIF3D"     "DDX42"     "HSF1"      "TOP1"      "STRN4"    
+#>  [547] "SLC16A10"  "SRGAP2"    "STAMBPL1"  "WIPF2"     "ZRANB3"    "HYPK"     
+#>  [553] "LARP7"     "MAST4"     "ARPC1B"    "DIP2B"     "GAB1"      "PITPNB"   
+#>  [559] "TPR"       "RPL7"      "RBM39"     "FBXO30"    "TNS2"      "PRKAB2"   
+#>  [565] "SRP14"     "ETV6"      "CUX1"      "CDCA2"     "KIF2C"     "ARHGEF10L"
+#>  [571] "MCM2"      "KIF23"     "NFIC"      "SIN3A"     "HNRNPAB"   "MELK"     
+#>  [577] "SLC20A2"   "ZRANB2"    "NUP35"     "MAP4K4"    "STRN3"     "STRIP1"   
+#>  [583] "FEZ2"      "RPL37"     "TAGLN2"    "MCM6"      "EPS15"     "KIF4A"    
+#>  [589] "PABPN1"    "TSC2"      "RBM25"     "CDCA3"     "ENSA"      "MYH9"     
+#>  [595] "SRRT"      "UBE2O"     "POLA1"     "LGR5"      "SUPT6H"    "C10ORF88" 
+#>  [601] "TOR1AIP1"  "KIF5B"     "FLNA"      "HCK"       "SUN1"      "ZW10"     
+#>  [607] "NPAT"      "HNRNPU"    "PLCB3"     "ARHGEF11"  "DENND5B"   "APBB2"    
+#>  [613] "SNTB1"     "SCAF4"     "NCAPH"     "BCAR1"     "HNF1B"     "PCNP"     
+#>  [619] "LRRFIP2"   "CBX8"      "SRSF2"     "RPS6KA4"   "PAPOLA"    "INO80C"   
+#>  [625] "TSR3"      "PSD4"      "ARHGEF28"  "MAGI3"     "SDC2"      "KLC1"     
+#>  [631] "RNF8"      "MINK1"     "CIC"       "PIGB"      "ZC3HC1"    "AARSD1"   
+#>  [637] "R3HDM2"    "SNTB2"     "SHROOM3"   "GCFC2"     "SNX2"      "BCL9L"    
+#>  [643] "RAB3GAP1"  "MUS81"     "NUP153"    "ALAD"      "NFKB1"     "RIN2"     
+#>  [649] "TJAP1"     "BNIP2"     "NIFK"      "FARP1"     "KLC2"      "UTP18"    
+#>  [655] "ZZZ3"      "FAF1"      "IQSEC1"    "BCR"       "ZFR"       "AKT1"     
+#>  [661] "TUBA1B"    "ACLY"      "ARMC1"     "MEPCE"     "SCRIB"     "TMEM245"  
+#>  [667] "DEPTOR"    "MORC3"     "NEDD4L"    "RBL1"      "AEBP2"     "ROCK2"    
+#>  [673] "CDC26"     "PML"       "PEA15"     "UACA"      "SH3BP4"    "NUP133"   
+#>  [679] "MKI67"     "RBM10"     "RNMT"      "AKIRIN2"   "SPRY4"     "AKAP13"   
+#>  [685] "KIFAP3"    "TMEM63B"   "DMXL1"     "ARFIP2"    "MARK2"     "SMARCAD1" 
+#>  [691] "RPRD2"     "HMHA1"     "VTI1B"     "LPP"       "NAV1"      "PRPF38A"  
+#>  [697] "DCP2"      "TAB2"      "MTSS1"     "HTATSF1"   "TICRR"     "PRPF4B"   
+#>  [703] "OTUD4"     "EPB41L2"   "DHX16"     "PARD6B"    "RBM17"     "RBM6"     
+#>  [709] "MLLT6"     "SPTAN1"    "MPHOSPH10" "HNRNPA2B1" "ZZEF1"     "BRD8"     
+#>  [715] "NCOA3"     "CGN"       "EPS8L2"    "MKL2"      "SYNE2"     "USP10"    
+#>  [721] "RAB3IP"    "MED15"     "PCGF6"     "AAK1"      "KIAA1468"  "RBM15"    
+#>  [727] "KIAA0430"  "FRA10AC1"  "ZBED9"     "EIF4B"     "LRRC8A"    "MRE11A"   
+#>  [733] "KIAA1598"  "SNX17"     "HDGF"      "SF3A1"     "RSF1"      "REPS1"    
+#>  [739] "TMOD3"     "CBX3"      "SLC9A6"    "PCIF1"     "AGFG1"     "PHAX"     
+#>  [745] "ARHGAP1"   "SSB"       "SMEK1"     "RAD18"     "VAMP8"     "USP4"     
+#>  [751] "SPIRE2"    "PAWR"      "ABL2"      "NOP2"      "MCRS1"     "RAB11FIP5"
+#>  [757] "LASP1"     "STK24"     "SDPR"      "TNS1"      "PNISR"     "CASP3"    
+#>  [763] "ZUFSP"     "FRMD4B"    "CNPY4"     "PHLDB2"    "DLGAP4"    "SLC4A7"   
+#>  [769] "METAP2"    "NCOR1"     "HNRNPH1"   "IRF2BP2"   "TMEM230"   "URI1"     
+#>  [775] "VCL"       "KMT2A"     "SUFU"      "CES5A"     "STXBP5"    "NUP205"   
+#>  [781] "RABEP1"    "NCAPD2"    "RPS6KA1"   "BMI1"      "ZFC3H1"    "LRRC41"   
+#>  [787] "USP39"     "GPN1"      "TCEAL5"    "JUN"       "MLLT4"     "NUCKS1"   
+#>  [793] "FLNC"      "SH3PXD2B"  "NECAP2"    "MYO9B"     "ZC3H11A"   "NOL4L"    
+#>  [799] "DENND4C"   "GAPVD1"    "TRIM24"    "ZNF608"    "HDAC6"     "COIL"     
+#>  [805] "SORD"      "SLC33A1"   "DNMT1"     "FAM91A1"   "HNRNPC"    "FAM83H"   
+#>  [811] "NPM3"      "CD44"      "SMCR8"     "GTF3C4"    "CTTN"      "CHAF1B"   
+#>  [817] "VPS26B"    "TRIP11"    "TRA2A"     "PRUNE2"    "INTS6"     "NUFIP1"   
+#>  [823] "C2ORF49"   "ZAK"       "CAMK2G"    "TRIO"      "SRRM2"     "RFTN1"    
+#>  [829] "API5"      "SAV1"      "SEC22B"    "NPM1"      "OPTN"      "ALS2"     
+#>  [835] "EEF2"      "APOBR"     "SRM"       "CTIF"      "PLEKHA6"   "NVL"      
+#>  [841] "EIF1"      "HNRNPK"    "U2AF2"     "RRAD"      "SLC16A1"   "ZFHX3"    
+#>  [847] "UBR5"      "DOCK5"     "CDC5L"     "ATAD2"     "KANK1"     "IRS2"     
+#>  [853] "GOLGB1"    "TMSB10"    "FAM195A"   "ZC3H8"     "ZFP36L1"   "NDRG3"    
+#>  [859] "MIA3"      "FHOD1"     "CAMSAP2"   "RFC1"      "BCKDHA"    "CPD"      
+#>  [865] "TNS3"      "ATG2B"     "PPP1R18"   "UCK2"      "PHF14"     "CEP97"    
+#>  [871] "MAVS"      "SMG9"      "CCT8"      "MAP1S"     "KANSL1"    "TJP2"     
+#>  [877] "CBX5"      "TXLNA"     "ESAM"      "YWHAE"     "IRF3"      "PRPF3"    
+#>  [883] "AKT1S1"    "PHACTR4"   "BICC1"     "PHC3"      "TTC7A"     "RNF20"    
+#>  [889] "NUP188"    "ATRX"      "KIF21A"    "KIAA1715"  "IBTK"      "TOX4"     
+#>  [895] "RPS20"     "PLEKHA7"   "EIF4G1"    "SUPT5H"    "BCL9"      "JAG1"     
+#>  [901] "ZC3H14"    "PSRC1"     "CPEB4"     "UFL1"      "PRKD3"     "CDK17"    
+#>  [907] "C1ORF52"   "ARMC10"    "RBBP6"     "RABEPK"    "MAST2"     "BRCA1"    
+#>  [913] "FLRT1"     "DAXX"      "FAM76B"    "CCDC88A"   "DPF2"      "PDZD8"    
+#>  [919] "PTPN12"    "SUB1"      "ATXN2L"    "SMARCC2"   "STK11IP"   "RANGAP1"  
+#>  [925] "TLK2"      "NUP50"     "EML4"      "GRAMD3"    "UBAP1"     "NASP"     
+#>  [931] "RBM8A"     "NOLC1"     "GINS2"     "STRN"      "EPS15L1"   "PTPRG"    
+#>  [937] "LRRFIP1"   "NSFL1C"    "FXR1"      "SAFB2"     "DIDO1"     "MED14"    
+#>  [943] "ULK1"      "ARHGAP21"  "MKL1"      "PPP1R10"   "PLEKHG2"   "CLIP1"    
+#>  [949] "SYNRG"     "ZNF281"    "CDK12"     "ETHE1"     "ELF1"      "GOLGA5"   
+#>  [955] "PTPN21"    "APLF"      "POF1B"     "TP53BP1"   "MDC1"      "SNX7"     
+#>  [961] "LSM14B"    "PLEKHA1"   "TP53BP2"   "SF3B1"     "TMPO"      "PAXBP1"   
+#>  [967] "SLMAP"     "LRP1"      "CD2AP"     "FKBP15"    "PEX14"     "CNPY2"    
+#>  [973] "GATAD2B"   "DSP"       "EIF5B"     "NUCB1"     "ZCCHC11"   "OSBPL11"  
+#>  [979] "RSL1D1"    "ARHGEF40"  "TMEM55A"   "METTL1"    "RPS6KA3"   "PHLDB1"   
+#>  [985] "SYNPO"     "PDLIM7"    "BNIP3"     "RASA3"     "DNAJC2"    "SLIRP"    
+#>  [991] "ARFGAP1"   "RAD51AP1"  "ZMYM4"     "MAP3K3"    "WIBG"      "CNOT3"    
+#>  [997] "PPIL4"     "CTNND1"    "KPNA3"     "HNRNPUL2"  "NCBP1"     "DUSP7"    
+#> [1003] "TRAF7"     "LYSMD2"    "FOXK1"     "SMTN"      "XRCC6"     "MYO18A"   
+#> [1009] "MBD3"      "SBNO1"     "NEK9"      "ABCF1"     "PPFIBP1"   "HMGN1"    
+#> [1015] "AKAP10"    "TRIM2"     "KRT18"     "TAB3"      "RICTOR"    "MDH1"     
+#> [1021] "PRRC2C"    "RBM14"     "HNRNPA1"   "ARFGEF1"   "CKAP4"     "PNN"      
+#> [1027] "CDK4"      "MRPL23"    "NME2"      "ASUN"      "HS1BP3"    "GMIP"     
+#> [1033] "ZNRF2"     "BRD7"      "ZYX"       "SH2B1"     "PCM1"      "EIF6"     
+#> [1039] "PRRC2B"    "DDX46"     "MYO1E"     "MTDH"      "PPIP5K2"   "SLC9A3R1" 
+#> [1045] "SFR1"      "GTSE1"     "SERBP1"    "PRKAB1"    "CNOT2"     "PJA1"     
+#> [1051] "RIN1"      "NR2C2AP"   "WDR62"     "CHERP"     "NAB2"      "ELMSAN1"  
+#> [1057] "CTNNB1"    "CEP170"    "GFPT2"     "WDR70"     "SOS1"      "AHCTF1"   
+#> [1063] "ARHGEF7"   "CCNT1"     "PPHLN1"    "MAPRE2"    "PCBP1"     "PXN"      
+#> [1069] "UBA2"      "ETL4"      "ASPSCR1"   "MAP7D1"    "MARK3"     "ARFGEF2"  
+#> [1075] "SRA1"      "SLAIN2"    "ADRBK1"    "NUP93"     "HSPB8"     "YTHDC2"   
+#> [1081] "THUMPD3"   "SMG6"      "NMT1"      "UBXN7"     "TFIP11"    "AP3B1"    
+#> [1087] "EMG1"      "NOL10"     "KLHL6"     "ADNP"      "DDX55"     "NCOR2"    
+#> [1093] "CEP170B"   "PDAP1"     "HAUS6"     "TCOF1"     "LYSMD3"    "ZMYND8"   
+#> [1099] "TRRAP"     "ERBB2IP"   "ATF7"      "ASAP2"     "CAST"      "RPS17"    
+#> [1105] "PDXDC1"    "SRRM1"     "PPP1R13L"  "FAT1"      "HDLBP"     "NSUN2"    
+#> [1111] "TTLL12"    "SPRY1"     "ERRFI1"    "PLCG1"     "MARCKS"    "CHD8"     
+#> [1117] "PKP4"      "RAI14"     "CDK16"     "PRKAA1"    "PID1"      "TFAP4"    
+#> [1123] "MTUS2"     "FAM207A"   "MTA3"      "RALGAPA2"  "IFITM2"    "SLC38A2"  
+#> [1129] "PFAS"      "EIF4A3"    "CDC42EP1"  "NMD3"      "LRP4"      "PTPN1"    
+#> [1135] "TJP1"      "TMEM115"   "TBC1D25"   "RTN4"      "CWC27"     "TXNL1"    
+#> [1141] "NFATC2IP"  "SOD1"      "LEO1"      "ZCCHC8"    "CC2D1B"    "TPD52L2"  
+#> [1147] "RPS3"      "FXR2"      "HNRNPA3"   "SVIL"      "C19ORF47"  "SLK"      
+#> [1153] "ARHGAP35"  "FNBP4"     "MCM3"      "SNIP1"     "EIF3J"     "WDHD1"    
+#> [1159] "RALY"      "DSTN"      "LATS1"     "CCNL1"     "TBX3"      "PALLD"    
+#> [1165] "GTF2F1"    "PURB"      "WIZ"       "DDX51"     "WDR75"     "PPP6R3"   
+#> [1171] "NUP98"     "RPRD1B"    "DMWD"      "AHNAK"     "SFSWAP"    "SH3GL1"   
+#> [1177] "ABLIM1"    "MTUS1"     "PTMA"      "TAF7"      "PTPRC"     "LUC7L2"
 ```
 
 ``` r
@@ -432,12 +435,12 @@ head(GSEA)
 #> 5:            50nM_dasatinib vs ctrl_K562 (Human) [19651622]/SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs
 #> 6:             5nM_dasatinib vs ctrl_K562 (Human) [19651622]/SILAC Phosphoproteomics Signatures of Differentially Phosphorylated Proteins for Drugs
 #>            pval         padj    log2err         ES        NES size
-#> 1: 3.617917e-34 8.321210e-33 1.52292160  0.4545874  2.1373141 1049
-#> 2: 8.378378e-01 8.378378e-01 0.05559471 -0.3858994 -0.6561513    3
-#> 3: 8.378378e-01 8.378378e-01 0.05559471 -0.3858994 -0.6561513    3
-#> 4: 9.850690e-13 5.664147e-12 0.91011973  0.4320662  1.9306136  441
-#> 5: 6.539635e-04 1.367378e-03 0.47727082  0.4375812  1.6701877  104
-#> 6: 7.025335e-03 1.009892e-02 0.40701792  0.4170298  1.5566514   88
+#> 1: 5.617321e-34 1.291984e-32 1.51610760  0.4545874  2.1242699 1049
+#> 2: 8.757515e-01 8.757515e-01 0.05184576 -0.3858994 -0.6638719    3
+#> 3: 8.757515e-01 8.757515e-01 0.05184576 -0.3858994 -0.6638719    3
+#> 4: 1.678465e-12 9.651174e-12 0.91011973  0.4320662  1.9209053  441
+#> 5: 6.375163e-04 1.332989e-03 0.47727082  0.4375812  1.6539977  104
+#> 6: 6.193414e-03 9.039041e-03 0.40701792  0.4170298  1.5294317   88
 #>                                 leadingEdge
 #> 1:     LIPE,RPRD2,ZW10,LVRN,ARFGEF2,ZYX,...
 #> 2:                        CTDSPL2,PTPN6,SYK

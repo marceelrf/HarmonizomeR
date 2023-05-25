@@ -90,6 +90,8 @@ The function `GSEAHarmonizome()` uses the `{fgsea}` package to compute the GSEA 
 ```{r}
 pathways_list <- geneset_to_list(tbl = silacdrug_ds)
 
+length(pathways_list[[1]])
+
 pathways_list[1]
 ```
 
